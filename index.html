@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multi-series Pie Chart</title>
+  </head>
+  <body>
+    <div id="skillContainer"></div>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script>
+      Highcharts.chart("skillContainer", {
+        chart: {
+          marginTop: -30,
+          marginBottom: 90,
+          height: 300,
+          type: "pie",
+        },
+        title: {
+          text: "",
+        },
+        tooltip: {
+          pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>",
+        },
+        plotOptions: {
+          pie: {
+            /*startAngle: 0,
+                endAngle: 360,
+                center: ['50%', '65%']*/
+            shadow: false,
+            center: ["50%", "50%"],
+          },
+          series: {
+            events: {
+              legendItemClick: function () {
+                var visibility = this.visible ? "visible" : "hidden";
+                console.log(visibility);
+                if (
+                  !confirm(
+                    "The series is currently " +
+                      visibility +
+                      ". Do you want to change that?"
+                  )
+                ) {
+                  return false;
+                }
+              },
+            },
+          },
+        },
+        colors: ['#55d8fe', '#fd8373', '#feda83','#a3a0fb', '#69F0AE', '#E1BEE7','#B2DFDB', '#C5E1A5', '#F8BBD0', '#E6EE9C', '#C6FF00', '#FFF176'],
+        series: [
+          {
+            name: "Without AI [NP]",
+            // innerSize: '40%',
+            size: "60%",
+            showInLegend: true,
+            data: [
+              { name: "Digital BE", y: 5.25 },
+              { name: "Digital FE", y: 28.05 },
+              { name: "FW", y: 13.48 },
+              { name: "Mixed signal", y: 17.19 },
+              { name: "OPS", y: 1.52 },
+              { name: "Other", y: 12.4 },
+              { name: "SW", y: 10.82 },
+              { name: "Systems", y: 11.3 },
+            ],
+            dataLabels: {
+              enabled: true,
+              format: "{point.percentage:.1f}%",
+              distance: -30,
+              shadow: false,
+              style: {
+                fontWeight: "normal",
+                color: "#555",
+                textOutline: 0,
+              },
+            },
+          },
+          {
+            name: "Without AI [NP]",
+            innerSize: "60%",
+            size: "80%",
+            data: [
+              { name: "Digital BE", y: 6.17 },
+              { name: "Digital FE", y: 32.31 },
+              { name: "FW", y: 11.01 },
+              { name: "Mixed signal", y: 20.15 },
+              { name: "OPS", y: 1.06 },
+              { name: "Other", y: 13.12 },
+              { name: "SW", y: 7.34 },
+              { name: "Systems", y: 8.84 },
+            ],
+            dataLabels: {
+              enabled: true,
+              format: "{point.percentage:.1f}%",
+              distance: -15,
+              shadow: false,
+              style: {
+                fontWeight: "normal",
+                color: "#555",
+                textOutline: 0,
+              },
+            },
+          },
+        ],
+        legend: {
+          align: "left",
+          // verticalAlign: 'top',
+          x: 0,
+          y: 10,
+          // layout: 'vertical',
+          itemMarginTop: 7,
+          marginBottom: 40,
+          itemStyle: {
+            fontSize: "12px",
+            fontWeight: "normal",
+          },
+          symbolHeight: 15,
+          symbolWidth: 15,
+          symbolRadius: 0,
+          symbolPadding: 10,
+        },
+        credits: {
+          enabled: false,
+        },
+      });
+    </script>
+  </body>
+</html>
